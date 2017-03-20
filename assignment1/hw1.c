@@ -16,7 +16,7 @@ void getBinaryFromHex(char* hex, char* bin) {
   int hexValue = 0;
   int binIt = 4;
   size_t size = strlen(hex);
-  if (size >= 128) {
+  if (size > 128) {
     printf("hex value too long! memory leaks inbound, sorry! (capped to 128 digit hex value)\n");
     free(bin); // can't reach other number, gg
     exit(1);
@@ -62,7 +62,7 @@ void printHexBlock(char* head) {
     if (hex[i] != 0) {
       startPrint = 1;
     }
-    if (startPrint == 0) continue;
+    if (startPrint == 0 && i > 0) continue;
     if (hex[i] < 10) {
       printf("%d", hex[i]);
     }
